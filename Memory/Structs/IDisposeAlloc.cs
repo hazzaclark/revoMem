@@ -11,11 +11,27 @@ using System.Collections.Generic;
 
 namespace revoMem.Memory.Structs;
 
-public interface IDisposeAlloc : IDisposable
+public readonly struct IDisposeAlloc<T> : IDisposable
 {
     /// <summary>
     /// THE MEMORY ADDRESS WHEREBY IT NEEDS TO ENCAPSULATE THE PROTECTION
     /// </summary>
     public uint MEMORY_ADDRESS { get; init; }
+
+    /// <summary>
+    /// THE BASE ADDRESS AT WHICH THE PROTECTION WAS INITIALISED
+    /// </summary>
+    public uint BASE_PROTECTION { get; init; }
+
+
+    /// <summary>
+    /// THE SIZE OF THE MEMORY
+    /// </summary>
+    public int SIZE { get; init; }
+
+    public void Dispose()
+    {
+        
+    }
     
 }
