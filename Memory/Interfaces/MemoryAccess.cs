@@ -26,6 +26,16 @@ public interface MemoryAccess
 
 
     /// <summary>
+    /// READ A GENERIC PIECE OF DATA IRRESPECTIVE OF THE TYPE ASSOCIATED WITH IT
+    /// THIS WILL BE DETERMINED BASED ON THE MEMORY TO FROM READ AGAINST ANY UNMANAGED/DISCLOSED TYPE
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="OFFSET"></param>
+    /// <returns></returns>
+    T READ_GENERIC<T>(uint OFFSET) where T : unmanaged;
+
+
+    /// <summary>
     /// WRITE A GENERIC TYPE TO AN ARBIRARY MEMORY ADDRESS
     /// </summary>
     /// <typeparam name="T"></typeparam>
