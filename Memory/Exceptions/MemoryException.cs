@@ -9,7 +9,6 @@
 // OVER THE FLOW AND EXECUTION OF MEMORY
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using revoMem.Memory.Structs;
 
@@ -26,6 +25,8 @@ public class MemoryException : Exception
     public uint MEMORY_ADDRESS { get; }
 
     public uint SIZE { get; }
+
+    public UInt32 MEMORY_REGION { get; }
 
     /// <summary>
     /// DUMMY CONSTRUCTOR FOR HANDLING
@@ -46,5 +47,7 @@ public class MemoryException : Exception
     public MemoryException(SerializationInfo INFO)
     {
         MEMORY_ADDRESS = INFO.GetUInt32(nameof(MEMORY_ADDRESS));
+        SIZE = INFO.GetUInt32(nameof(SIZE));
+        MEMORY_REGION = INFO.GetUInt32(nameof(MEMORY_REGION));
     }
 }
