@@ -8,10 +8,11 @@
 // IN LOCATIONS BY WHICH THEY ARE OUT OF BOUNDS - PROVIDING A SAFE MEANS OF DEALLOC
 
 using System.Collections.Generic;
+using revoMem.Memory.Interfaces;
 
 namespace revoMem.Memory.Structs;
 
-public readonly struct IDisposeAlloc<T> : IDisposable
+public readonly struct IDisposeAlloc<T> : IDisposable where T : MemoryProtection
 {
     /// <summary>
     /// THE MEMORY ADDRESS WHEREBY IT NEEDS TO ENCAPSULATE THE PROTECTION
