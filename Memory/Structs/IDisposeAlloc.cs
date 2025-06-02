@@ -24,15 +24,16 @@ public readonly struct IDisposeAlloc<T> : IDisposable where T : MemoryProtection
     /// </summary>
     public uint BASE_PROTECTION { get; init; }
 
-
     /// <summary>
     /// THE SIZE OF THE MEMORY
     /// </summary>
     public int SIZE { get; init; }
+    
+    public T PROTECTION { get; init; }
 
     public void Dispose()
     {
-        
+
     }
     
 }
