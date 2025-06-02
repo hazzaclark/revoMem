@@ -13,6 +13,16 @@ namespace revoMem.Memory;
 
 public static class MemoryExtensions
 {
+    /// <summary>
+    /// ACCOUNTS FOR THE SAFE CHANGE IN TYPE PROTECTION
+    /// // THIS IS BY SAFELY DETERMINING THE NEW VALUE HOUSES AT THE PROTECTOR AGAINST THE MEMORY ADDRESS
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="BASE"></param>
+    /// <param name="MEM_ADDRESS"></param>
+    /// <param name="SIZE"></param>
+    /// <param name="NEW_LEVEL"></param>
+    /// <returns></returns>
     public static uint CHANGE_PROTECTION<T>(this T BASE, uint MEM_ADDRESS, int SIZE, MemoryProtection NEW_LEVEL)
     {
         return BASE.CHANGE_PROTECTION(MEM_ADDRESS, SIZE, NEW_LEVEL);
