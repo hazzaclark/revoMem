@@ -15,3 +15,12 @@ public interface MemoryProtection
 {
     uint CHANGE_PROTECTION_LAYER(uint MEM_ADDRESS, int SIZE, uint NEW_LEVEL);
 }
+
+[Flags]
+public enum PROTECTION_LAYERS
+{
+    READ = 1 << 0,
+    WRITE = 1 << 1,
+    EXECUTE = 1 << 2,
+    ALL = READ | WRITE | EXECUTE
+}
