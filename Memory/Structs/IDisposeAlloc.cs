@@ -31,9 +31,13 @@ public readonly struct IDisposeAlloc<T> : IDisposable where T : MemoryProtection
     
     public T PROTECTION { get; init; }
 
+    /// <summary>
+    /// EXTENDED FUNCTIONALITY FROM THE BASE DISPOABLE INTERFACE
+    /// AUTOMATICALLY DELEGATES TO NEW PROTECTION LAYER
+    /// </summary>
     public void Dispose()
     {
-
+        PROTECTION.CHANGE_PROTECTION_LAYER(MEMORY_ADDRESS, SIZE, BASE_PROTECTION);
     }
     
 }
