@@ -7,6 +7,7 @@
 
 using revoMem.Memory.Interfaces;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace revoMem.Memory;
 
@@ -22,13 +23,16 @@ public unsafe partial struct ProcessMemory : MemoryAccess
     /// <param name="VALUE">THE DESTINATION SPAN WHERE THE READ BYTES WILL BE WRITTEN TO</param>
     /// <remarks>
     /// THE METHOD IN QUESTION PERFORMS AN UNALIGNED MEMORY COPY WHICH ASSUMES THAT THE SOURCE MEMORY REGION
-    /// IS ASSOCIATED WITH THE CURRENT OFFSET, AS WELL AS IT BEING VALID TO BEGIN WITH
+    /// IS ASSOCIATED WITH THE CURRENT OFFSET, AS WELL AS IT BEING VALID TO BEGIN WITH 
     /// </remarks>
     public void READ_RAW(uint OFFSET, Span<byte> VALUE)
     {
-        fixed (byte* RESULT = VALUE)
+        // CREATE A SOURCE POINTER FROM THE OFFSET
+        byte* BUFFER = (byte*)OFFSET;
+
+        fixed (byte* DEST = VALUE)
         {
-            Unsafe.CopyBlockUnaligned(RESULT, (void*)OFFSET, (uint)VALUE.Length);
+            Unsafe.CopyBlockUnaligned(DEST, (void*)OFFSET, (uint)VALUE.Length);
         }
     }
 
