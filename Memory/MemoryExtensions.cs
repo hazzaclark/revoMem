@@ -7,7 +7,6 @@
 // THIS FILE MORESO ENCOMPASSES THE EXTENSION METHODS USED TO BE 
 // ABLE TO MAKE CONCLUSIVELY ASSERTIONS OF THE CHANGES IN MEMORY PROTECTION
 
-using System.Net.Http.Headers;
 using revoMem.Memory.Interfaces;
 using revoMem.Memory.Structs;
 
