@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using revoMem.Memory;
 using revoMem.Memory.Structs;
 
+namespace revoMem.Memory.Interfaces;
+
 public interface MemoryAccess
 {
     /// <summary>
