@@ -50,6 +50,5 @@ public unsafe class ProcessMemory : MemoryAccess
     }
 
     private byte[] TEST_BUFFER = new byte[1024];
-        
     public Span<byte> GET_TEST_BUFFER() => TEST_BUFFER.AsSpan();
 }
