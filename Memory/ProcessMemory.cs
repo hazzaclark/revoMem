@@ -15,8 +15,7 @@ namespace revoMem.Memory;
 public unsafe class ProcessMemory : MemoryAccess
 {
     public static ProcessMemory INSTANCE = new();
-    private byte[] BUFFER = new byte[1024];
-
+    private byte[] BUFFER = new byte[sizeof(UIntPtr)];
 
     /// <summary>
     /// READ BYTES BASED ON A PRE-SUPPOSED BYTE BUFFER
