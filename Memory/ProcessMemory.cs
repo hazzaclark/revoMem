@@ -6,14 +6,35 @@
 // BASED ON EVENTS
 
 using revoMem.Memory.Interfaces;
+using System.ComponentModel;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace revoMem.Memory;
 
 public unsafe class ProcessMemory : MemoryAccess
 {
     public static ProcessMemory INSTANCE = new();
+    private byte[] BUFFER = new byte[1024];
+
+
+    /// <summary>
+    /// READ BYTES BASED ON A PRE-SUPPOSED BYTE BUFFER
+    /// THIS IS TO ALLOW FOR SAFER CHECKS WHEN IT COMES TO THE ALLOCATION
+    /// OF MEMORY STREAMS
+    /// </summary>
+    /// <param name="ADDRSSS"></param>
+    /// <param name="LENGTH"></param>
+    /// <returns></returns>
+    public byte[] READ_BYTES(uint ADDRSSS, uint LENGTH)
+    {
+        checked
+        {
+            byte[] BUFFER = new byte[LENGTH];
+            READ(ADDRSSS, BUFFER);
+            return BUFFER;
+        }
+    }
 
     /// <summary>
     /// READS RAW BYTES FROM A SPECIFIED MEMORY OFFSET
@@ -27,7 +48,7 @@ public unsafe class ProcessMemory : MemoryAccess
     /// </remarks>
     public void READ(uint OFFSET, Span<byte> VALUE)
     {
-        fixed (byte* SOURCE = &GET_TEST_BUFFER()[(int)OFFSET])
+        fixed (byte* SOURCE = &BUFFER[OFFSET])
         fixed (byte* BUFFER = VALUE)
         {
             Unsafe.CopyBlock(BUFFER, SOURCE, (uint)VALUE.Length);
@@ -43,12 +64,9 @@ public unsafe class ProcessMemory : MemoryAccess
 
     public unsafe void WRITE<T>(uint OFFSET, in T BASE) where T : unmanaged
     {
-        fixed (byte* DEST = &GET_TEST_BUFFER()[(int)OFFSET])
+        fixed (byte* DEST = &BUFFER[OFFSET])
         {
             Unsafe.Write(DEST, BASE);
         }
     }
-
-    private byte[] TEST_BUFFER = new byte[1024];
-    public Span<byte> GET_TEST_BUFFER() => TEST_BUFFER.AsSpan();
 }
