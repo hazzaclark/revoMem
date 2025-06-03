@@ -12,6 +12,17 @@ namespace revoMem.Memory.Interfaces;
 
 public interface MemoryAccess
 {
+
+    /// <summary>
+    /// CONVERTS A BYTE ARRAY TO A GENERIC OBJECT
+    /// THIS HELPS ESPECIALLY WHEN BEING ABLE TO CREATE SAFER READS AND WRITES
+    /// </summary>
+    /// <param name="MEMORY"></param>
+    /// <param name="BYTES"></param>
+    /// <param name="OFFSET"></param>
+    /// <returns></returns>
+    unsafe object FROM_BYTES(void* MEMORY, byte[] BYTES, int OFFSET);
+
     /// <summary>
     /// READ RAW DATA FROM A SPECIFIED MEMORY ADDRESS
     /// ENCOMPASSING THE MEMORY SAFETY OF IT'S CONTEMPORARIES
