@@ -30,11 +30,6 @@ namespace revoMem
 
         static unsafe void MEM_SIM()
         {
-            ProcessMemory.INSTANCE.GET_TEST_BUFFER()[0] = 0x01;
-            ProcessMemory.INSTANCE.GET_TEST_BUFFER()[1] = 0x02;
-            ProcessMemory.INSTANCE.GET_TEST_BUFFER()[2] = 0x03;
-            ProcessMemory.INSTANCE.GET_TEST_BUFFER()[3] = 0x04;
-
             Span<byte> READ_BUFFER = stackalloc byte[4];
 
             ProcessMemory.INSTANCE.READ(0, READ_BUFFER);
