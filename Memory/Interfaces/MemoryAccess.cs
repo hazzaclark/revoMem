@@ -22,18 +22,7 @@ public interface MemoryAccess
     /// </summary>
     /// <param name="OFFSET"></param>
     /// <param name="VALUE"></param>
-    void READ_RAW(uint OFFSET, Span<byte> VALUE);
-
-
-    /// <summary>
-    /// READ A GENERIC PIECE OF DATA IRRESPECTIVE OF THE TYPE ASSOCIATED WITH IT
-    /// THIS WILL BE DETERMINED BASED ON THE MEMORY TO FROM READ AGAINST ANY UNMANAGED/DISCLOSED TYPE
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="OFFSET"></param>
-    /// <returns></returns>
-    T READ_GENERIC<T>(uint OFFSET) where T : unmanaged;
-
+    void READ(uint OFFSET, Span<byte> VALUE);
 
     /// <summary>
     /// WRITE A GENERIC TYPE TO AN ARBIRARY MEMORY ADDRESS
@@ -41,5 +30,5 @@ public interface MemoryAccess
     /// <typeparam name="T"></typeparam>
     /// <param name="OFFSET"></param>
     /// <param name="BASE"></param>
-    void WRITE<T>(uint OFFSET, T BASE);
+    unsafe void WRITE<T>(uint OFFSET, in T BASE) where T : unmanaged;
 }
