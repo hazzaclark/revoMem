@@ -5,11 +5,9 @@
 // IN TURN, THIS WILL ALLOW FOR FULL MODULAR CONTROL IN HOOKING MEMORY MORE EFFICIENTLY
 // BASED ON EVENTS
 
-using revoMem.Memory.Interfaces;
-using System.ComponentModel;
-using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 
+using revoMem.Memory.Interfaces;
 namespace revoMem.Memory;
 
 public unsafe class ProcessMemory : MemoryAccess
