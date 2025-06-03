@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 
 namespace revoMem.Memory;
 
-public unsafe partial struct ProcessMemory : MemoryAccess
+public unsafe class ProcessMemory : MemoryAccess
 {
-    public static readonly ProcessMemory INSTANCE = new();
+    public static ProcessMemory INSTANCE = new();
 
     /// <summary>
     /// READS RAW BYTES FROM A SPECIFIED MEMORY OFFSET
@@ -25,14 +25,12 @@ public unsafe partial struct ProcessMemory : MemoryAccess
     /// THE METHOD IN QUESTION PERFORMS AN UNALIGNED MEMORY COPY WHICH ASSUMES THAT THE SOURCE MEMORY REGION
     /// IS ASSOCIATED WITH THE CURRENT OFFSET, AS WELL AS IT BEING VALID TO BEGIN WITH 
     /// </remarks>
-    public void READ_RAW(uint OFFSET, Span<byte> VALUE)
+    public void READ(uint OFFSET, Span<byte> VALUE)
     {
-        // CREATE A SOURCE POINTER FROM THE OFFSET
-        byte* BUFFER = (byte*)OFFSET;
-
-        fixed (byte* DEST = VALUE)
+        fixed (byte* SOURCE = &GET_TEST_BUFFER()[(int)OFFSET])
+        fixed (byte* BUFFER = VALUE)
         {
-            Unsafe.CopyBlockUnaligned(DEST, (void*)OFFSET, (uint)VALUE.Length);
+            Unsafe.CopyBlock(BUFFER, SOURCE, (uint)VALUE.Length);
         }
     }
 
@@ -43,8 +41,15 @@ public unsafe partial struct ProcessMemory : MemoryAccess
     /// <param name="OFFSET"></param>
     /// <param name="BASE"></param>
 
-    public void WRITE<T>(uint OFFSET, T BASE)
+    public unsafe void WRITE<T>(uint OFFSET, in T BASE) where T : unmanaged
     {
-        Unsafe.WriteUnaligned((void*)OFFSET, BASE);
+        fixed (byte* DEST = &GET_TEST_BUFFER()[(int)OFFSET])
+        {
+            Unsafe.Write(DEST, BASE);
+        }
     }
+
+    private byte[] TEST_BUFFER = new byte[1024];
+        
+    public Span<byte> GET_TEST_BUFFER() => TEST_BUFFER.AsSpan();
 }
