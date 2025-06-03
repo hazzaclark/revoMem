@@ -5,6 +5,7 @@
 // IN TURN, THIS WILL ALLOW FOR FULL MODULAR CONTROL IN HOOKING MEMORY MORE EFFICIENTLY
 // BASED ON EVENTS
 
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
 using revoMem.Memory.Interfaces;
@@ -13,7 +14,8 @@ namespace revoMem.Memory;
 public unsafe class ProcessMemory : MemoryAccess
 {
     public static ProcessMemory INSTANCE = new();
-    private byte[] BUFFER = new byte[sizeof(UIntPtr)];
+    public const uint BYTES_PER_BLOCK = 4096;
+    private byte[] BUFFER = new byte[BYTES_PER_BLOCK];
 
     /// <summary>
     /// READ BYTES BASED ON A PRE-SUPPOSED BYTE BUFFER
