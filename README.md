@@ -1,15 +1,15 @@
 # revoMem
-A study into the Memory Management and Hooks of Mario Kart Wii
+.NET implementation of Memory Hooks and Management (x86_64)
 
 # Motive:
 
-The following project aims to provide a lightweight and seamless means of making conducive works out of the Memory Scheme in Mario Kart Wii.
+The following project aims to provide a lightweight and seamless means of making conducive works out of the Memory Scheme of common x86_64 processes.
 
-In turn, this project aims to abstract the need for intrinsic and maticulous patching of DOL files in order to learn more about the games inner-workings.
+Originally, this project was limited mostly to uncovering the structural integrity of Mario Kart Wii, though as the project has expanded and motives have changed, I aim to provide a surrogate means of hooking, uncovering and determining the basis of common Memory Management processes in applications.
 
-Inspired mostly by the fruitful efforts of the [Dolphin Memory Engine](https://github.com/aldelaro5/dolphin-memory-engine/), this aims to be an abstraction of said functionality but specifically focussing on the structures and globals defined in Mario Kart Wii.
+Inspired mostly by the fruitful efforts of the [Dolphin Memory Engine](https://github.com/aldelaro5/dolphin-memory-engine/), this aims to be an abstraction of said functionality but specifically focussing on the structures and innate workings of a traditional process.
 
-The end goal with this project is to finally provide an ease-of-use means of hooking Discord Rich Presence to [WheelWizard](https://github.com/TeamWheelWizard/WheelWizard/)
+This project is scalible and portable and the build outcome will be entirely deterministic based on the OS of choice - through the usage of definers for each OS type
 
 # Building:
 
