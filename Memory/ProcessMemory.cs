@@ -1,5 +1,5 @@
 // COPYRIGHT (C) HARRY CLARK 2025
-// DOCUMENTATION RESEARCH ON WORKING WITH MARIO KART WII'S MEMORY
+// .NET IMPLEMENTATION OF MEMORY HOOKS AND MANAGEMENT
 
 // THIS FILE PERTAINS TOWARDS THE LOGIC ENCOMPASSING MY TAKE ON THE PROCESS MEMORY
 // IN TURN, THIS WILL ALLOW FOR FULL MODULAR CONTROL IN HOOKING MEMORY MORE EFFICIENTLY
@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using revoMem.Memory.Interfaces;
 namespace revoMem.Memory;
 
-public unsafe class ProcessMemory : MemoryAccess
+public unsafe class ProcessMemory
 {
     public static ProcessMemory INSTANCE = new();
     public const uint BYTES_PER_BLOCK = 4096;
